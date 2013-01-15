@@ -9,48 +9,38 @@ describe Interview do
     it { should ensure_length_of(:room).is_at_most(50) }
   end
 
-  describe 'unassigned' do
-    let!(:unassigned_interview) { FactoryGirl.create(:interview, :unassigned) }
-    let!(:assigned_interview) { FactoryGirl.create(:interview, :assigned) }
-    
-    it 'does not include Interviews with an Interviewee' do
-      Interview.unassigned.should_not include(assigned_interview)
-      Interview.unassigned.should include(unassigned_interview)
-    end
-  end
-
-  describe 'for_position' do
-    let!(:software_engineer) { FactoryGirl.create(:interview, :software_engineer) }
-    let!(:project_manager) { FactoryGirl.create(:interview, :project_manager) }
-
-    it 'includes positions in the Array' do
-      Interview.for_position('Software Engineer').should include(software_engineer)
+  describe 'next_interview_for_position' do
+    context 'interview in the past' do
+      now = Time.now
+      Given!(:interview_in_past) { FactoryGirl.create(:interview, :unassigned, scheduled_at: now - 1 ) }
+      When(:available_interviews) { Interview.next_interview_for_position(interview_in_past.position, now) }
+      Then { available_interviews.should be_nil }
     end
 
-    it 'does not include positions that were not in the Array' do
-      Interview.for_position('Software Engineer').should_not include(project_manager)
-    end
-  end
-
-  describe 'scheduled_after' do
-    it 'includes interviews scheduled at exactly a given time' do
-        now = Time.zone.now
-        interview_scheduled_now = FactoryGirl.create(:interview, scheduled_at: now)
-        Interview.scheduled_after(now).should include(interview_scheduled_now)
+    context 'interview in the future' do
+      now = Time.now
+      Given!(:interview_in_future) { FactoryGirl.create(:interview, :unassigned, scheduled_at: now + 1 ) }
+      When(:available_interviews) { Interview.next_interview_for_position(interview_in_future.position, now) }
+      Then { available_interviews.should eq(interview_in_future) }
     end
 
-    it 'includes Interviews scheduled 1 second after the given time' do
-      Timecop.freeze do
-        future = FactoryGirl.create(:interview, scheduled_at: 1.second.from_now)
-        Interview.scheduled_after(Time.zone.now).should include(future)
-      end
+    context 'interview for a different position' do
+      Given!(:interview_for_different_position) { FactoryGirl.create(:interview, :project_manager, :unassigned) }
+      When(:available_interviews) { Interview.next_interview_for_position(FactoryGirl.create(:position, :software_engineer_position)) }
+      Then { available_interviews.should be_nil }
     end
 
-    it 'does not include Interviews scheduled 1 second before a given time' do
-      Timecop.freeze do
-        past = FactoryGirl.create(:interview, scheduled_at: 1.seconds.ago)
-        Interview.scheduled_after(Time.zone.now).should_not include(past)
-      end
+    context 'interview already assigned to interviewee' do
+      Given!(:interview_already_assigned) { FactoryGirl.create(:interview, :assigned) }
+      When(:available_interviews) { Interview.next_interview_for_position(interview_already_assigned.position) }
+      Then { available_interviews.should be_nil }
+    end
+
+    context 'multiple unassigned interviews' do
+      Given!(:earlier_interview) { FactoryGirl.create(:interview) }
+      Given!(:later_interview) { FactoryGirl.create(:interview, position: earlier_interview.position) }
+      When(:available_interviews) { Interview.next_interview_for_position(earlier_interview.position) }
+      Then { available_interviews.should eq(earlier_interview) }
     end
   end
 end

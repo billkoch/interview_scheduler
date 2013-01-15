@@ -1,5 +1,5 @@
 class Position < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :title
 
-  validates :name, presence: true
+  validates :title, presence: true
 end

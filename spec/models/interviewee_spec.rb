@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rspec/given'
 
 describe Interviewee do
   describe 'validation' do
