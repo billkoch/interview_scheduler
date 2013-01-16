@@ -1,0 +1,30 @@
+<div id="container" style="margin-top: 40px; margin-left: 40px; width:500px;">
+  <h1>New Interview</h1>
+  </br></br>
+  <form action="/interviews" method="post">
+    <div class="well">
+      <label>Position</label>
+      <% positions = Position.all.map { |position| [position.title]}%>
+      <%= select_tag(:position, options_for_select(positions)) %>
+      </br></br>
+      <label>Interview Time</label>
+        <div id="datetimepicker1" class="input-append date" style="margin-bottom: 40px;">
+          <input data-format="yyyy-MM-dd hh:mm:ss" type="text" name="scheduled_at"></input>
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+          </span>
+        </div>
+        <label>Room</label>
+        <input type="text" name="room">
+        </br></br>
+        <input class="btn" type="submit">
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
+</script>

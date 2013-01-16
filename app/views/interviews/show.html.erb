@@ -1,0 +1,13 @@
+<div id="container" style="margin-left: 40px; margin-top: 40px;">
+  <div id="head">
+    <h1>Interview Slots</h1>
+    <ul>
+      <% Interview.all.map { |interview| %>
+        <li><%= interview.position.title %> - <%= interview.room %> - <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p") %></li>
+      <% } %>
+    </ul>
+  </div>
+  <div id="main" style="margin-top: 50px;">
+    <a href="/interviews/new" class="btn" id="">Create a Slot</a>
+  </div>
+</div>
