@@ -1,0 +1,13 @@
+<div id="container" style="margin-left: 40px; margin-top: 40px;">
+  <div id="head">
+    <h1>Blacklisted Emails</h1>
+    <ul>
+      <% BlacklistedEmail.all.map { |blacklisted| %>
+        <li><%= blacklisted.email %></li>
+      <% } %>
+    </ul>
+  </div>
+  <div id="main" style="margin-top: 50px;">
+    <a href="/blacklisted_emails/new" class="btn" id="">Blacklist an email</a>
+  </div>
+</div>

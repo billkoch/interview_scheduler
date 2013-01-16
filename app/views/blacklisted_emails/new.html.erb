@@ -1,0 +1,14 @@
+<div id="container" style="margin-top: 40px; margin-left: 40px;">
+  <h1>Blacklist an email</h1>
+  <form action="/blacklisted_emails" method="post">
+    <label>Email</label>
+    <input type="text" name="blacklist[email]">
+  </br>
+    <input class="btn" type="submit">
+  </form>
+  <div style="font: red;">
+      <% if flash[:error] %>
+        <h3 class="error"><%= flash[:error].full_messages.collect {|error| '-' + error}.join("\t") %></h3>
+      <% end %>
+  </div>
+</div>
