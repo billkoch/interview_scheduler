@@ -1,13 +1,54 @@
 <div id="container" style="margin-left: 40px; margin-top: 40px;">
-  <div id="head">
-    <h1>Interview Slots</h1>
-    <ul>
-      <% Interview.all.map { |interview| %>
-        <li><%= interview.position.title %> - <%= interview.room %> - <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p %Z") %></li>
-      <% } %>
-    </ul>
-  </div>
+  <div id="head" style="float:left;">
+    <div style="overflow-y:scroll; height: 600px;">
+      <h1>Open Interview Slots</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Room</th>
+            <th>Position</th>
+            <th>Scheduled Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Interview.unassigned.order('room').map { |interview| %>
+            <tr>
+              <td><%= interview.room %></td>
+              <td><%= interview.position.title %></td>
+              <td><%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p %Z") %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
   <div id="main" style="margin-top: 50px;">
     <a href="/interviews/new" class="btn" id="">Create a Slot</a>
+  </div>
+  </div>
+  <div style="float: left; margin-left: 100px; height: 40px;">
+    <div style="overflow-y: scroll;">
+      <h1>Scheduled Interviews</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Room</th>
+            <th>Position</th>
+            <th>Interviewee</th>
+            <th>Scheduled Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Interview.where('interviewee_id not null').order('room').map { |interview| %>
+          <% interviewee = Interviewee.find(interview.interviewee_id) %>
+            <tr>
+              <td><%= interview.room %></td>
+              <td><%= interview.position.title %></td>
+              <td><%= interviewee.first_name %> <%= interviewee.last_name %></td>
+              <td><%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p %Z") %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
