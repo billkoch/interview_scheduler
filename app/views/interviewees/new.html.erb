@@ -1,18 +1,25 @@
-<div id="container" style="margin-top: 40px; margin-left: 40px;">
-  <h1>Show Interviewees</h1>
-  <form action="/interviewees" method="post">
-    <label>First Name</label>
-    <input type="text" name="interviewee[first_name]">
-    <label>Last Name</label>
-    <input type="text" name="interviewee[last_name">
-    <label>Email</label>
-    <input type="text" name="interviewee[email]">
-    <label>Role</label>
-    <select>
-      <option>Software Engineer</option>
-      <option>Business Analyst</option>
-    </select>
-    </br></br>
-    <input class="btn" type="submit">
-  </form>
+<div style="margin-top: 80px;">
+  <div id="container" class="well" style="margin:0 auto; width: 800px; height: 600px;">
+    <div style="margin-top: 100px; margin-left: 300px;">
+      <h1>Register</h1>
+      <form action="/interviewees/schedule" method="post">
+        <label>First Name</label>
+        <input type="text" name="interviewee[first_name]">
+        <label>Last Name</label>
+        <input type="text" name="interviewee[last_name">
+        <label>Email</label>
+        <input type="text" name="interviewee[email]">
+        <label>Role</label>
+          <% positions = Position.all.map { |position| [position.title] unless position.title.eql?('Unassigned')}%>
+          <%= select_tag(:position, options_for_select(positions)) %>
+        </br></br>
+        <input class="btn" type="submit" value="Signup">
+      </form>
+      <div style="font: red;">
+          <% if flash[:error] %>
+            <h3 class="error"><%= flash[:error].full_messages.collect {|error| '-' + error}.join("\t") %></h3>
+          <% end %>
+      </div>
+    </div>
+  </div>
 </div>

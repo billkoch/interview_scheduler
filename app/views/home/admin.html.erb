@@ -1,16 +1,22 @@
-<div id="container" class="well" style="margin:0 auto; width: 800px;">
-  <h1>Sign in as Administrator</h1>
-  <form action="/home/login" method="post">
-    <label>Username</label>
-    <input type="text" name="admin[user]">
-    <label>Password</label>
-    <input type="password" name="admin[pass]">
-    </br></br>
-    <input class="btn" type="submit">
-  </form>
-  <div style="font: red;">
-      <% if flash[:error] %>
-        <h3 class="error"><%= flash[:error] %></h3>
-      <% end %>
+<div style="margin-top: 80px;">
+<div id="container" class="well" style="margin:0 auto; width: 1000px; height: 800px;">
+    <div style="margin-top: 100px; margin-left: 150px;">
+      <div style="margin-left: 20%; margin-top: 25%;">
+        <h1>Sign in as Administrator</h1>
+        <form action="/home/login" method="post">
+          <label>Username</label>
+          <input type="text" name="admin[user]">
+          <label>Password</label>
+          <input type="password" name="admin[pass]">
+          </br></br>
+          <input class="btn" type="submit">
+        </form>
+        <div style="font: red;">
+            <% if flash[:error] %>
+              <h3 class="error"><%= flash[:error] %></h3>
+            <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

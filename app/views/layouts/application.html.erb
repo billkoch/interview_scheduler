@@ -5,9 +5,26 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js"></script>
+  <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-datetimepicker.min.css">
 </head>
 <body>
-
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="/">UPMC Interview Registration</a>
+      <% if admin? %>
+      <ul class="nav">
+        <li><a href="/interviewees">Interviewees</a></li>
+        <li><a href="/blacklisted_emails">Blacklisted Emails</a></li>
+        <li><a href="/interviews">Interviews</a></li>
+        <li><a href="/home/logout">Logout</a></li>
+      </ul>
+      <% end %>
+    </div>
+</div>
 <%= yield %>
 
 </body>

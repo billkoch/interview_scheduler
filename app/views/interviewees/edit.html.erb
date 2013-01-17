@@ -1,20 +1,26 @@
-<div id="container" style="margin-left: 40px; margin-top: 40px;">
+<div id="container" class="well"style="margin: 0 auto; width: 800px;">
   <div id="head">
-    <h1>Interview Registration</h1>
+    <legend>Interviews that you're signed up for (Please write these down)</legend>
     <ul>
       <% @interviewee.interviews.map { |interview| %>
-        <li>You have an interview in <%= interview.room %> for the position <%= interview.position.title %> at <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p") %></li>
+        <% if interview.position.title.eql?('Unassigned') %>
+            <li>You have an interview in <%= interview.room %> at <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p") %></li>
+          <% else %>
+          <li>You have an interview in <%= interview.room %> for the position <%= interview.position.title %> at <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p") %></li>
+          <% end%>
       <% } %>
+      <% if (@interviewee.interviews.size < 1) %>
+        <h3>Sorry, there are no more interviews available for this position...</h3>
+      <% end %>
     </ul>
   </div>
   <div id="main" style="margin-top: 50px;">
-    <a href="/interviewees" class="btn" id="">Back to Signup</a>
+    <a href="/home/index" class="btn" id="">Take me home</a>
   </div>
 
-  <% if (@interviewee.interviews.size < 2) %>
+  <% if (@interviewee.interviews.size < 2) and !@interviewee.interviews.first.position.title.eql?('Unassigned') %>
     <div id="morePlease" style="margin-top: 50px;">
       <legend>Interview for a second Position</legend>
-    </br></br>
       <form action="/interviewees" method="post">
         <label>Role</label>
         <% positions = Position.all.map { |position| [position.title]}%>

@@ -15,13 +15,13 @@ class HomeController < ApplicationController
   def login
     signin_params = params['admin']
     if signin_params['pass'].eql?('nu!tdcr3g') and signin_params['user'].eql?('lomison')
-      session["password"] = signin_params["pass"]
+      session[:password] = signin_params["pass"]
     end
     redirect_to home_index_url
   end
 
   def logout
-    session["password"] = nil
+    session[:password] = nil
     redirect_to home_index_url
   end
 end

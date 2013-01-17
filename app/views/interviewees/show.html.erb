@@ -1,8 +1,16 @@
 <div id="container" style="margin-left: 40px; margin-top: 40px;">
   <div id="head">
     <h1>Interview Registration</h1>
+    <ul>
+      <% Interviewee.all.map { |interviewee| %>
+        <li><%= interviewee.last_name %>, <%= interviewee.first_name %> - <%= interviewee.email %></li>
+      <% } %>
+    </ul>
   </div>
   <div id="main" style="margin-top: 50px;">
     <a href="/interviewees/new" class="btn" id="">Register</a>
+      <% if flash[:notice] %>
+        <h3 class="error"><%= flash[:notice] %></h3>
+      <% end %>
   </div>
 </div>

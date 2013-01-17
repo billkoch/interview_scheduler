@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Position.create(title: 'QA')
+# Position.create(title: 'Architect')
+# Position.create(title: 'SWE & QA')
+# Position.create(title: 'Systems Analyst')
+# Position.create(title: 'Software Engineer')
+# Position.create(title: 'Senior Product Manager')
+# Position.create(title: 'Designer')
+Position.create({title: 'Unassigned'})

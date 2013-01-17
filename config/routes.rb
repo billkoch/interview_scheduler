@@ -1,4 +1,16 @@
 InterviewScheduler::Application.routes.draw do
+  get "home/index"
+  post "home/login"
+  get "home/logout"
+  get "home/admin"
+
+  get "blacklisted_emails/show"
+
+  resource :interviewees
+  resource :interviews
+  resource :blacklisted_emails
+  match "interviewees/schedule" => "interviewees#schedule"
+  match "" => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

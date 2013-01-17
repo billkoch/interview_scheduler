@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110222406) do
+ActiveRecord::Schema.define(:version => 20130116041230) do
+
+  create_table "blacklisted_emails", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "interviewees", :force => true do |t|
     t.string   "last_name",  :limit => 50, :null => false

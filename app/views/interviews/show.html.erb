@@ -3,7 +3,7 @@
     <h1>Interview Slots</h1>
     <ul>
       <% Interview.all.map { |interview| %>
-        <li><%= interview.position.title %> - <%= interview.room %> - <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p") %></li>
+        <li><%= interview.position.title %> - <%= interview.room %> - <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p %Z") %></li>
       <% } %>
     </ul>
   </div>

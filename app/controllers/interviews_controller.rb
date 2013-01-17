@@ -12,9 +12,9 @@ class InterviewsController < ApplicationController
   end
 
   def create
-    puts params
     position = Position.where("title = ?", params['position']).first
     Interview.create({scheduled_at: params['scheduled_at'], room: params['room'], position: position})
-    redirect_to interviews_path
+    puts session[:password]
+    render action: 'show'
   end
 end

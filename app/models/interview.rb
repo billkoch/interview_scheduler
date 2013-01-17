@@ -1,5 +1,5 @@
 class Interview < ActiveRecord::Base
-  attr_accessible :room, :scheduled_at
+  attr_accessible :room, :scheduled_at, :position
 
   belongs_to :interviewee
   belongs_to :position
