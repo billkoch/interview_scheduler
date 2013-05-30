@@ -1,0 +1,58 @@
+<div id="container" style="margin: 50px;" ng-controller="UnscheduledInterviewsCntrl">
+      <div style="font-size: 28px;">
+        <strong>Unscheduled Interviews ({{ interviews.length }} left)</strong>
+        <strong style="margin-left:200px; font-size: 18px;">Type to Filter:</strong>  <input style="line-height: 30px;" ng-model="interview">
+      </div>
+    <div style="overflow-y: scroll; height: 300px; margin-top: 40px;">
+      <% if admin? && !manager? %>
+      Assign an interview   <input type="checkbox" ng-model="checked">
+      <% end %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Room</th>
+            <th>Scheduled Time</th>
+            <th>Position</th>
+            <th>Class</th>
+            <% if admin? && !manager? %>
+              <th>Assign Me</th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="i in interviews|filter:interview">
+              <td><a href ng-click="click($index)">{{i.room}}</a></td>
+              <td>{{ i.scheduled_at }}</td>
+              <td>{{ i.position }}</td>
+              <td>{{ i.a_class }}</td>
+              <% if admin? && !manager? %>
+                <td><input name="select" ng-click="assignInterview(i)" type="radio"></td>
+              <% end %>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-show="checked" style="margin-top: 5%;">
+      <div style="font-size: 18pt;">
+        <strong>Unscheduled Interviews</strong>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="i in interviewees">
+              <td><a href ng-click="assign(i, $index)">{{i.first_name}} {{ i.last_name }}</a></td>
+              <td>{{ i.email }}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+      <div id="main" style="margin-top: 50px;">
+    <a href="/interviews/new" class="btn" id="">Create a Slot</a>
+  </div>
+  </div>
+</div>

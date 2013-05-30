@@ -1,52 +1,29 @@
-<div id="container" style="margin-left: 40px; margin-top: 40px;">
-  <div id="head" style="float:left;">
-    <div style="overflow-y:scroll; height: 600px;">
-      <h1>Open Interview Slots</h1>
+<div id="container" style="margin-left: 40px; margin-top: 40px; margin-right: 100px;">
+      <div style="font-size: 28px;">
+        <strong>Scheduled Interviews</strong>
+        <div style="margin-left:200px; font-size: 18px; float:right;"><strong>Type to Filter:</strong>  <input style="line-height: 30px;" ng-model="interview"></div>
+      </div>
+      <div style="overflow-y: scroll; margin-top: 30px;">
       <table class="table">
         <thead>
           <tr>
             <th>Room</th>
-            <th>Position</th>
             <th>Scheduled Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% Interview.unassigned.order('room').map { |interview| %>
-            <tr>
-              <td><%= interview.room %></td>
-              <td><%= interview.position.title %></td>
-              <td><%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p %Z") %></td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
-    </div>
-  <div id="main" style="margin-top: 50px;">
-    <a href="/interviews/new" class="btn" id="">Create a Slot</a>
-  </div>
-  </div>
-  <div style="float: left; margin-left: 100px; height: 40px;">
-    <div style="overflow-y: scroll;">
-      <h1>Scheduled Interviews</h1>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Room</th>
-            <th>Position</th>
             <th>Interviewee</th>
-            <th>Scheduled Time</th>
+            <% if admin? && !manager? %>
+              <th>Unassign</th>
+            <% end %>
           </tr>
         </thead>
-        <tbody>
-          <% Interview.where('interviewee_id not null').order('room').map { |interview| %>
-          <% interviewee = Interviewee.find(interview.interviewee_id) %>
-            <tr>
-              <td><%= interview.room %></td>
-              <td><%= interview.position.title %></td>
-              <td><%= interviewee.first_name %> <%= interviewee.last_name %></td>
-              <td><%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p %Z") %></td>
+        <tbody ng-controller="ClosedInterviewsCntrl">
+            <tr ng-repeat="i in interviews|filter:interview">
+              <td>{{i.room}}</td>
+              <td>{{ i.scheduled_at }}</td>
+              <td>{{ i.interviewee_first_name }} {{ i.interviewee_last_name }}</td>
+              <% if admin? && !manager?%>
+                <td><button class="btn" ng-click="unassign($index)">Unassign</button></td>
+              <% end %>
             </tr>
-          <% } %>
         </tbody>
       </table>
     </div>

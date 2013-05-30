@@ -12,4 +12,8 @@
 //
 // require jquery
 // require jquery_ujs
+//= require angular.min
+//= require websocket_rails/main
 //= require_tree .
+//= require_tree ./angular
+//= require underscore

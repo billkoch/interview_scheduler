@@ -2,16 +2,13 @@
   <div id="container" class="well" style="margin:0 auto; width: 800px; height: 600px;">
     <div style="margin-top: 100px; margin-left: 300px;">
       <h1>Register</h1>
-      <form action="/interviewees/schedule" method="post">
+      <form action="/interviewees" method="post">
         <label>First Name</label>
         <input type="text" name="interviewee[first_name]">
         <label>Last Name</label>
         <input type="text" name="interviewee[last_name">
         <label>Email</label>
         <input type="text" name="interviewee[email]">
-        <label>Role</label>
-          <% positions = Position.all.map { |position| [position.title] unless position.title.eql?('Unassigned')}%>
-          <%= select_tag(:position, options_for_select(positions)) %>
         </br></br>
         <input class="btn" type="submit" value="Signup">
       </form>

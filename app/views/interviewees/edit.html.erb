@@ -3,33 +3,34 @@
     <legend>Interviews that you're signed up for (Please write these down)</legend>
     <ul>
       <% @interviewee.interviews.map { |interview| %>
-        <% if interview.position.title.eql?('Unassigned') %>
-            <li>You have an interview in <%= interview.room %> at <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p") %></li>
-          <% else %>
           <li>You have an interview in <%= interview.room %> for the position <%= interview.position.title %> at <%= interview.scheduled_at.strftime("%B %d, %Y %I:%M%p") %></li>
-          <% end%>
       <% } %>
-      <% if (@interviewee.interviews.size < 1) %>
-        <h3>Sorry, there are no more interviews available for this position...</h3>
-      <% end %>
     </ul>
   </div>
   <div id="main" style="margin-top: 50px;">
-    <a href="/home/index" class="btn" id="">Take me home</a>
+    <a href="/" class="btn" id="">Take me home</a>
   </div>
-
-  <% if (@interviewee.interviews.size < 2) and !@interviewee.interviews.first.position.title.eql?('Unassigned') %>
-    <div id="morePlease" style="margin-top: 50px;">
-      <legend>Interview for a second Position</legend>
-      <form action="/interviewees" method="post">
-        <label>Role</label>
-        <% positions = Position.all.map { |position| [position.title]}%>
-        <%= select_tag(:position, options_for_select(positions)) %>
-      </br></br>
-        <input name="_method" type="hidden" value="put" />
-        <input type="hidden" name="id" value="<%= @interviewee.id %>">
-        <input class="btn" type="submit">
-      </form>
+    <% if @interviewee.is_not_booked? %>
+      <div id="morePlease" style="margin-top: 50px;">
+        <legend>Signup for a Position</legend>
+        <form action="/interviewees" method="post">
+          <label>Role</label>
+          <%if @interviewee.positions.length < 1 %>
+          <% positions = Position.all.map { |position| [position.title]}%>
+          <%= select_tag(:position, options_for_select(positions)) %>
+          <% else %>
+            <% positions = @interviewee.positions.map { |position| [position.title]}%>
+            <%= select_tag(:position, options_for_select(positions)) %>
+          <% end %>
+        </br></br>
+          <input name="_method" type="hidden" value="put" />
+          <input type="hidden" name="id" value="<%= @interviewee.id %>">
+          <input class="btn" type="submit">
+        </form>
+      </div>
+    <% end %>
+    <div style="margin-top: 20px;">
+      <h3><%= flash[:notice] %></h3>
+      <h3 class="text-error"><%= flash[:error] %></h3>
     </div>
-  <% end %>
 </div>

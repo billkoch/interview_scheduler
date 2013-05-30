@@ -20,7 +20,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'execjs'
+gem 'therubyracer'
 gem 'jquery-rails'
+gem 'underscore-rails'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -31,13 +34,16 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'timecop'
+  gem 'angular-rails'
 end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'websocket-rails'
+gem 'thin'
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jbuilder'
 
 # Use unicorn as the app server
 # gem 'unicorn'

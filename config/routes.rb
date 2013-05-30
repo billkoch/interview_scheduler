@@ -9,8 +9,14 @@ InterviewScheduler::Application.routes.draw do
   resource :interviewees
   resource :interviews
   resource :blacklisted_emails
-  match "interviewees/schedule" => "interviewees#schedule"
-  match "" => "home#index"
+  match "open_interviews" => "interviews#show_unassigned"
+  match "closed_interviews" => "interviews#show_assigned"
+  match "interviewees/:id/remove_position" => "interviewees#remove_position", via: [:post]
+  match "interviewees/:id/add_position" => "interviewees#add_position", via: [:post]
+  match "interviewees/:id/delete_user" => "interviewees#delete_user", via: [:post]
+  match "interviews/:id/unassign" => "interviews#unassign", via: [:post]
+  match "interviews/assign" => "interviews#assign", via: [:post]
+  match "" => "interviewees#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

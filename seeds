@@ -1,0 +1,109 @@
+a = Position.where('title = ?', 'Architect').first
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: a, room: 'Office 280', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: a, room: 'Office 280', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: a, room: 'Office 280', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: a, room: 'Office 280', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: a, room: 'Office 280', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: a, room: 'Office 280', a_class: 'A'})
+
+qa = Position.where('title = ?', 'Project Manager, Software Development').first
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: qa, room: 'Office 221', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: qa, room: 'Office 221', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: qa, room: 'Office 221', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: qa, room: 'Office 221', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: qa, room: 'Office 221', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: qa, room: 'Office 221', a_class: 'A'})
+
+arch = Position.where('title = ?', 'UX Designer').first
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: arch, room: 'Kennywood Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: arch, room: 'Kennywood Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: arch, room: 'Kennywood Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: arch, room: 'Kennywood Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: arch, room: 'Kennywood Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: arch, room: 'Kennywood Park', a_class: 'A'})
+
+arch = Position.where('title = ?', 'Software Engineer').first
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: arch, room: 'Schenley Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: arch, room: 'Schenley Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: arch, room: 'Schenley Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: arch, room: 'Schenley Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: arch, room: 'Schenley Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: arch, room: 'Schenley Park', a_class: 'A'})
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: arch, room: 'Office 278', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: arch, room: 'Office 278', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: arch, room: 'Office 278', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: arch, room: 'Office 278', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: arch, room: 'Office 278', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: arch, room: 'Office 278', a_class: 'A'})
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: arch, room: 'Office 279', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: arch, room: 'Office 279', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: arch, room: 'Office 279', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: arch, room: 'Office 279', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: arch, room: 'Office 279', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: arch, room: 'Office 279', a_class: 'A'})
+
+
+msqa = Position.where('title = ?', 'Manager, Software Quality Assurance').first
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: msqa, room: 'Office 285', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: msqa, room: 'Office 285', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: msqa, room: 'Office 285', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: msqa, room: 'Office 285', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: msqa, room: 'Office 285', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: msqa, room: 'Office 285', a_class: 'A'})
+
+se = Position.where('title = ?', 'Quality Assurance Analyst').first
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: se, room: 'Hartwood Acres', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: se, room: 'Hartwood Acres', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: se, room: 'Hartwood Acres', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: se, room: 'Hartwood Acres', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: se, room: 'Hartwood Acres', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: se, room: 'Hartwood Acres', a_class: 'A'})
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: se, room: 'Office 222', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: se, room: 'Office 222', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: se, room: 'Office 222', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: se, room: 'Office 222', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: se, room: 'Office 222', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: se, room: 'Office 222', a_class: 'B'})
+
+sa = Position.where('title = ?', 'Business Systems Analyst').first
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: sa, room: 'Point State Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: sa, room: 'Point State Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: sa, room: 'Point State Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: sa, room: 'Point State Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: sa, room: 'Point State Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: sa, room: 'Point State Park', a_class: 'A'})
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: sa, room: 'West View Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: sa, room: 'West View Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: sa, room: 'West View Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: sa, room: 'West View Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: sa, room: 'West View Park', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: sa, room: 'West View Park', a_class: 'A'})
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: sa, room: 'Office 219', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: sa, room: 'Office 219', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: sa, room: 'Office 219', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: sa, room: 'Office 219', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: sa, room: 'Office 219', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: sa, room: 'Office 219', a_class: 'B'})
+
+sa = Position.where('title = ?', 'Product Manager').first
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: sa, room: 'Office 286', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: sa, room: 'Office 286', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: sa, room: 'Office 286', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: sa, room: 'Office 286', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: sa, room: 'Office 286', a_class: 'A'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: sa, room: 'Office 286', a_class: 'A'})
+
+Interview.create({scheduled_at: '2013-04-16 18:00:00', position: sa, room: 'Mellon Park', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:10:00', position: sa, room: 'Mellon Park', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:20:00', position: sa, room: 'Mellon Park', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:30:00', position: sa, room: 'Mellon Park', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:40:00', position: sa, room: 'Mellon Park', a_class: 'B'})
+Interview.create({scheduled_at: '2013-04-16 18:50:00', position: sa, room: 'Mellon Park', a_class: 'B'})

@@ -5,7 +5,6 @@ describe Interview do
     it { should validate_presence_of(:room) }
     it { should validate_presence_of(:position) }
     it { should validate_presence_of(:scheduled_at) }
-
     it { should ensure_length_of(:room).is_at_most(50) }
   end
 
@@ -19,8 +18,8 @@ describe Interview do
 
     context 'interview in the future' do
       now = Time.now
-      Given!(:interview_in_future) { FactoryGirl.create(:interview, :unassigned, scheduled_at: now + 1 ) }
-      When(:available_interviews) { Interview.next_interview_for_position(interview_in_future.position, now) }
+      Given!(:interview_in_future) { FactoryGirl.create(:interview, :unassigned, scheduled_at: now + 15.minute ) }
+      When(:available_interviews) { Interview.next_interview_for_position(interview_in_future.position) }
       Then { available_interviews.should eq(interview_in_future) }
     end
 
@@ -36,11 +35,41 @@ describe Interview do
       Then { available_interviews.should be_nil }
     end
 
-    context 'multiple unassigned interviews' do
-      Given!(:earlier_interview) { FactoryGirl.create(:interview) }
-      Given!(:later_interview) { FactoryGirl.create(:interview, position: earlier_interview.position) }
-      When(:available_interviews) { Interview.next_interview_for_position(earlier_interview.position) }
-      Then { available_interviews.should eq(earlier_interview) }
+    context 'interviews assigned at the same time' do
+      time = Time.now + 10.minutes
+      Given!(:earlier_interview) { FactoryGirl.create(:interview, scheduled_at: time) }
+      Given!(:later_interview) { FactoryGirl.create(:interview, scheduled_at: earlier_interview.scheduled_at) }
+      Given!(:already_scheduled) { Interview.next_interview_for_position(earlier_interview.position) }
+      When(:new_available_interviews) { Interview.next_interview_for_position(earlier_interview.position) }
+      Then { new_available_interviews.should_not be_nil }
     end
   end
-end
+
+  describe 'get_unscheduled' do
+    context 'assigned' do
+      Given!(:interview_already_assigned) { FactoryGirl.create(:interview, :assigned) }
+      When(:unscheduled_interview) { Interview.get_unscheduled }
+      Then { unscheduled_interview.length.should eq(0)}
+    end
+
+    context 'unassigned' do
+      Given!(:unassigned_interview) { FactoryGirl.create(:interview, :unassigned) }
+      When(:new_interviews) { Interview.get_unscheduled }
+      Then { new_interviews.length.should eq(1)}
+    end
+  end
+
+  describe 'get_scheduled' do
+    context 'assigned' do
+      Given!(:interview_already_assigned) { FactoryGirl.create(:interview, :assigned) }
+      When(:new_interviews) { Interview.get_scheduled }
+      Then { new_interviews.length.should eq(1)}      
+    end
+
+    context 'unassigned' do
+      Given!(:unassigned_interview) { FactoryGirl.create(:interview, :unassigned) }
+      When(:new_interviews) { Interview.get_scheduled }
+      Then { new_interviews.length.should eq(0)}
+    end
+  end
+end 
