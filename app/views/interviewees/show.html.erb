@@ -13,15 +13,14 @@
             <th>Name</th>
             <th>Email</th>
             <% if admin? && !manager? %>
-              <th>SWE</th>
+              <th>Sr Soft Arch</th>
+              <th>Sr. Prod Man</th>
+              <th>Proj Man, Soft Dev</th>
+              <th>SWEs</th>
               <th>QA</th>
-              <th>Manager QA</th>
-              <th>Architect</th>
-              <th>BSA</th>
-              <th>UX Designer</th>
-              <th>Sr. Prod Man.</th>
-              <th>Proj. Man, Soft Dev</th>
+              <th>Prod Anal Int</th>
               <th>Sr. BA</th>
+              <th>UX</th>
             <% end %>
           </tr>
         </thead>
@@ -38,7 +37,6 @@
                 <td><input type="checkbox" ng-change="changePosition($index, 5)" ng-model="i.selected[5]"></td>
                 <td><input type="checkbox" ng-change="changePosition($index, 6)" ng-model="i.selected[6]"></td>
                 <td><input type="checkbox" ng-change="changePosition($index, 7)" ng-model="i.selected[7]"></td>
-                <td><input type="checkbox" ng-change="changePosition($index, 8)" ng-model="i.selected[8]"></td>
                 <td><button class="btn btn-danger" ng-click="deleteUser($index)">Delete</button></td>
               <% end %>
             </tr>

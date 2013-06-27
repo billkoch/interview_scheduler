@@ -14,11 +14,12 @@ class Interview < ActiveRecord::Base
   scope :order_by_room, order('room')
   scope :for_position, lambda { |position| where(position_id: position) }
   scope :scheduled_after, lambda { |time| where('scheduled_at >= ?', time) }
-  scope :not_during, lambda { |time| where('scheduled_at > ? or scheduled_at < ?', time + 5.minutes, time - 5.minutes)}
+  scope :not_during, lambda { |time| where('scheduled_at > ? or scheduled_at < ?', time + 1.minutes, time - 1.minutes)}
   scope :for_class, lambda { |a_class| where(a_class: a_class)}
 
   def self.next_interview_for_position(position, scheduled_at=Time.now, class_a = 'A', other_interview_time=Time.now)
-    for_position(position).scheduled_after(scheduled_at).unassigned.for_class(class_a).not_during(other_interview_time).order('scheduled_at asc').limit(1).first
+    puts "in order => #{for_position(position).scheduled_after(scheduled_at).unassigned.for_class(class_a).not_during(other_interview_time).order('scheduled_at asc').inspect}"
+    for_position(position).scheduled_after(scheduled_at).unassigned.for_class(class_a).not_during(other_interview_time).order('scheduled_at asc').first
   end
 
   def self.get_unscheduled

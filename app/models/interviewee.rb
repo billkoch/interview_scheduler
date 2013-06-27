@@ -32,16 +32,16 @@ class Interviewee < ActiveRecord::Base
   end
 
   def remaining_interviews
-    if self.positions.length > 0 && self.positions.length < 6
-      1 - self.interviews.length
+    if self.positions.length > 1 && self.positions.length < 7
+      2 - self.interviews.length
     else 
       1 - self.interviews.length
     end
   end
 
   def is_not_booked?
-    if self.positions.length > 0 && self.positions.length < 6
-      self.interviews.length < 1
+    if self.positions.length > 1 && self.positions.length < 7
+      self.interviews.length < 2
     else  
       self.interviews.length < 1
     end

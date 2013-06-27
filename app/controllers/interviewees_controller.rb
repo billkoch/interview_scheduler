@@ -18,9 +18,9 @@ class IntervieweesController < ApplicationController
   def edit
     @interviewee = Interviewee.find(params[:interviewee])
     # flash[:notice] = @interviewee.positions.count > 5 || @interviewee.positions.count < 1 ? "You may sign up for one interview" : "You may sign up for a total of #{@interviewee.positions.count} interviews."
-    # flash[:notice] = "You are done registering." unless @interviewee.is_not_booked?
-    flash[:notice] = @interviewee.interviews.count < 1 ? "You may sign up for one interview" : "You are done registering."
-    flash[:error] = @interviewee.interviews.count < 1 ? "" : "Please write down your interview time and location."
+    flash[:notice] = "You are done registering." unless @interviewee.is_not_booked?
+    # flash[:notice] = @interviewee.interviews.count < 1 ? "You may sign up for one interview" : "You are done registering."
+    # flash[:error] = @interviewee.interviews.count < 1 ? "" : "Please write down your interview time and location."
     respond_to do |format|
       format.html
     end

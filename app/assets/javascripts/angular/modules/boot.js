@@ -13,7 +13,7 @@ angular.module('interviewRegistration.service', []).
       return this.channel;
     }
   }).
-  value('positionMap', [78, 79, 80, 81, 82, 83, 84, 85, 86])
+  value('positionMap', [96, 97, 98, 99, 100, 101, 102, 103])
 
 angular.module('interviewRegistration', ['interviewRegistration.service']).
   run(function(channels) {
